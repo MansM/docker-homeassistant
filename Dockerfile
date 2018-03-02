@@ -1,4 +1,4 @@
-FROM debian:stretch-slim
+FROM arm32v7/debian:stretch-slim
 
 ARG HAVERSION=_HAVERSION_
 
