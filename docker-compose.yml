@@ -1,0 +1,14 @@
+version: "3.1"
+services:
+  hass:
+    image: mansm/homeassistant:0.64.2
+    container_name: home-assistant
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /home/pirate/haconfig:/root/.homeassistant
+    ports:
+      - 8123:8123
+    devices:
+      - "/dev/ttyAMA0:/dev/ttyAMA0"
+    command:  hass
+#bash -c "cd /srv/homeassistant && source bin/activate && hass"
