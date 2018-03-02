@@ -1,11 +1,10 @@
-sudo: true
-dist: trusty
-
-jobs:
-  include:
-    - stage: build docker image
-      script:
-        - export HAVERSION=$(curl https://api.github.com/repos/home-assistant/home-assistant/releases/latest|jq -r .name)
-        - sed -i "s/_HAVERSIONi_/${HAVERSION}/g" Dockerfile
-        - cat Dockerfile
-        - docker build -t mansm/home-assistant:${HAVERSION} .
+sudo: required
+services:
+- docker
+language: bash
+script:      
+  - export HAVERSION=$(curl https://api.github.com/repos/home-assistant/home-assistant/releases/latest|jq -r .name)
+  - sed -i "s/_HAVERSIONi_/${HAVERSION}/g" Dockerfile
+  - cat Dockerfile
+  - docker run --rm --privileged multiarch/qemu-user-static:register --reset
+  - docker build -t mansm/home-assistant:${HAVERSION} .
