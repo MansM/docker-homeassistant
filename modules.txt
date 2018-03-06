@@ -1,0 +1,16 @@
+apple_tv
+discovery
+frontend
+hue
+influxdb
+ios
+mqtt
+media_player.kodi
+media_player.plex
+notify.mailgun
+notify.slack
+sensor.miflora
+sensor.synologydsm
+sensor.systemmonitor
+sensor.thinkingcleaner
+zwave
