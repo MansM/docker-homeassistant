@@ -5,7 +5,7 @@ services:
     container_name: home-assistant
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - /home/pirate/haconfig:/root/.homeassistant
+      - ./config:/home/homeassistant/.homeassistant
     ports:
       - 8123:8123
     devices:

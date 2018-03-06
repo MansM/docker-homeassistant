@@ -9,8 +9,10 @@ media_player.kodi
 media_player.plex
 notify.mailgun
 notify.slack
+recorder
 sensor.miflora
 sensor.synologydsm
 sensor.systemmonitor
 sensor.thinkingcleaner
+sensor.yr
 zwave

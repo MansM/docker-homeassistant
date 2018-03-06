@@ -4,6 +4,7 @@ import sys
 import pprint
 import homeassistant.components
 import pip
+import site
 
 modules = []
 for module in open('/modules.txt'):
@@ -17,5 +18,5 @@ for x in modules:
   if hasattr(eval(modname), 'REQUIREMENTS' ):
     REQNAME = modname + ".REQUIREMENTS"
     for y in eval(REQNAME):
-        pip.main(['install', y, '--constraint', '/usr/local/lib/python3.5/dist-packages/homeassistant/package_constraints.txt'])
+        pip.main(['install', y, '--constraint', site.getsitepackages()[0] + '/homeassistant/package_constraints.txt'])
         print(y)
