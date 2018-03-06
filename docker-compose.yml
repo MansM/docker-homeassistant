@@ -1,14 +1,47 @@
 version: "3.1"
 services:
+  traefik:
+    image: traefik:1.5
+    ports:
+      - 80:80
+      - 443:443
+      - 8080:8080
+    networks:
+      - web
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik/traefik.toml:/traefik.toml
+      - ./traefik/acme.json:/acme.json
+    container_name: traefik
+  
   hass:
-    image: mansm/homeassistant:0.64.2
+    image: mansm/homeassistant:latest
     container_name: home-assistant
     volumes:
-      - /etc/localtime:/etc/localtime:ro
+      #- /etc/localtime:/etc/localtime:ro
       - ./config:/home/homeassistant/.homeassistant
     ports:
       - 8123:8123
-    devices:
-      - "/dev/ttyAMA0:/dev/ttyAMA0"
-    command:  hass
-#bash -c "cd /srv/homeassistant && source bin/activate && hass"
+    networks:
+      - web
+      - mqtt
+    labels:
+      - "traefik.backend=mansm.io"
+      - "traefik.docker.network=web"
+      - "traefik.frontend.rule=Host:home.mansm.io"
+      - "traefik.enable=true"
+      - "traefik.port=8123"
+      - "traefik.default.protocol=http"
+    # devices:
+    #   - "/dev/ttyAMA0:/dev/ttyAMA0"
+  
+  mqtt:
+    image: mansm/mqtt
+    networks:
+      - mqtt
+    ports:
+      - 1883:1883
+networks:
+  web:
+    external: true
+  mqtt:

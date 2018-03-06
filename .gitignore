@@ -1,2 +1,3 @@
-Dockerfile-local
+homeassistant/Dockerfile-local
 config
+traefik
