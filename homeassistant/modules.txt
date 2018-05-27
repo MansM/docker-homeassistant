@@ -1,4 +1,5 @@
 apple_tv
+cloud
 device_tracker.bluetooth_tracker
 device_tracker.bluetooth_le_tracker
 device_tracker.tile
