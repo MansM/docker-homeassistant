@@ -15,25 +15,27 @@ services:
     container_name: traefik
   
   hass:
-    image: mansm/homeassistant:latest
-    container_name: home-assistant
+    image: "mansm/homeassistant:latest"
+    #container_name: homeassistant
     volumes:
-      #- /etc/localtime:/etc/localtime:ro
-      - ./config:/home/homeassistant/.homeassistant
+      - /etc/localtime:/etc/localtime:ro
+      - ./config:/root/.homeassistant
     ports:
       - 8123:8123
     networks:
       - web
       - mqtt
     labels:
-      - "traefik.backend=mansm.io"
-      - "traefik.docker.network=web"
-      - "traefik.frontend.rule=Host:home.mansm.io"
-      - "traefik.enable=true"
-      - "traefik.port=8123"
-      - "traefik.default.protocol=http"
-    # devices:
-    #   - "/dev/ttyAMA0:/dev/ttyAMA0"
+      traefik.backend: mansm.io
+      traefik.docker.network: web
+      traefik.frontend.rule: Host:home.mansm.io
+      traefik.enable: "true"
+      traefik.port: "8123"
+      traefik.default.protocol: http
+    devices:
+      - "/dev/ttyAMA0:/dev/ttyAMA0"
+      - "/dev/ttyS0"
+      - "/dev/vhci:/dev/vhci"
   
   mqtt:
     image: mansm/mqtt
@@ -41,6 +43,7 @@ services:
       - mqtt
     ports:
       - 1883:1883
+
 networks:
   web:
     external: true

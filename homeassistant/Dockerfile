@@ -6,7 +6,7 @@ ARG GATTLIBVERSION=0.20150805
 #installing python
 RUN apt update && apt upgrade -y && \
     apt install -y --no-install-recommends python3-dev python3-pip python3-setuptools python3-pkgconfig \
-                                           libboost-thread-dev libboost-python-dev \
+                                           libboost-thread-dev libboost-python-dev libffi-dev libssl-dev \
                                            libudev-dev build-essential libglib2.0-0 libglib2.0-dev  \
                                            bluetooth libbluetooth-dev libmariadbd-dev && \
     apt clean all && rm -rf /var/cache/apt/*
@@ -34,7 +34,8 @@ RUN groupadd homeassistant && \
     useradd \
       --create-home \
       -g homeassistant \
+      -G dialout,tty \
       homeassistant
 
-USER homeassistant
+#USER homeassistant
 CMD hass
