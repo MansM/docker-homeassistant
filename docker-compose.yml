@@ -22,9 +22,10 @@ services:
       - ./config:/root/.homeassistant
     ports:
       - 8123:8123
-    networks:
-      - web
-      - mqtt
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+      - SYS_ADMIN
     labels:
       traefik.backend: mansm.io
       traefik.docker.network: web
