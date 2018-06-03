@@ -9,3 +9,7 @@ docker build -f homeassistant/Dockerfile-local -t mansm/homeassistant:${HAVERSIO
 docker tag mansm/homeassistant:${HAVERSION} mansm/homeassistant:latest
 
 docker build -t mansm/mqtt:latest mqtt/
+
+docker push mansm/homeassistant:${HAVERSION}
+docker push mansm/homeassistant:latest
+
