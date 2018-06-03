@@ -26,9 +26,6 @@ services:
       - NET_ADMIN
       - SYS_ADMIN
     network_mode: host 
-    #networks:
-    #  - web
-    #  - mqtt
     labels:
       traefik.backend: mansm.io
       traefik.docker.network: web
