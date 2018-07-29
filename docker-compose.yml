@@ -6,12 +6,12 @@ services:
       - 80:80
       - 443:443
       - 8080:8080
-    networks:
-      - web
+    network_mode: host
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./traefik/traefik.toml:/traefik.toml
       - ./traefik/acme.json:/acme.json
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
     container_name: traefik
   
   hass:
@@ -22,10 +22,10 @@ services:
       - ./config:/root/.homeassistant
     ports:
       - 8123:8123
-    network_mode: host
     cap_add:
       - NET_ADMIN
       - SYS_ADMIN
+    network_mode: host 
     labels:
       traefik.backend: mansm.io
       traefik.docker.network: web
@@ -40,8 +40,6 @@ services:
   
   mqtt:
     image: mansm/mqtt
-    networks:
-      - mqtt
     ports:
       - 1883:1883
 
