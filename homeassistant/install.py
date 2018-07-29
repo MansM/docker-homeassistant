@@ -7,7 +7,7 @@ import pip
 import site
 
 
-additionals = ['mysqlclient']
+additionals = ['mysqlclient', 'aiohttp_cors']
 for additional in additionals:
     pip.main(['install', additional, '--constraint', site.getsitepackages()[0] + '/homeassistant/package_constraints.txt', '--no-cache-dir'])
 
