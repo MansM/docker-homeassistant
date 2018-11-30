@@ -1,3 +1,4 @@
 homeassistant/Dockerfile-local
 config
 traefik
+nohup.out

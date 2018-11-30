@@ -1,7 +1,8 @@
 version: "3.1"
 services:
   traefik:
-    image: traefik:1.5
+    image: traefik:1.6.2
+    restart: always
     ports:
       - 80:80
       - 443:443
@@ -16,6 +17,7 @@ services:
   
   hass:
     image: "mansm/homeassistant:latest"
+    restart: always
     #container_name: homeassistant
     volumes:
       - /etc/localtime:/etc/localtime:ro
@@ -40,6 +42,7 @@ services:
   
   mqtt:
     image: mansm/mqtt
+    restart: always
     ports:
       - 1883:1883
 
