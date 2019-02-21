@@ -1,5 +1,8 @@
+stages:
+  - build
+
 kaniko:
-  stage: infra
+  stage: build
   image: docker.io/mansm/kaniko-executor:debug
   tags:
     - arm32v7
