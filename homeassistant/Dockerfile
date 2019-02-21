@@ -1,4 +1,4 @@
-FROM debian:stretch-slim
+FROM arm32v7/debian:stretch-slim
 
 ARG HAVERSION=_HAVERSION_
 ARG GATTLIBVERSION=0.20150805
