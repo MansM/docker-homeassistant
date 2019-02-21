@@ -13,7 +13,7 @@ mqtt
 media_player.denon
 media_player.kodi
 media_player.plex
-media_player.webostv
+webostv
 notify.mailgun
 notify.slack
 recorder
