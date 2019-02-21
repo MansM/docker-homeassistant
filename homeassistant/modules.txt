@@ -14,7 +14,7 @@ media_player.denon
 media_player.kodi
 media_player.plex
 webostv
-notify.mailgun
+mailgun
 notify.slack
 recorder
 sensor.miflora
