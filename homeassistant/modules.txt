@@ -20,6 +20,6 @@ recorder
 sensor.miflora
 sensor.synologydsm
 sensor.systemmonitor
-sensor.thinkingcleaner
+thinkingcleaner
 sensor.yr
 zwave
