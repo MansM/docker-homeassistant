@@ -7,6 +7,7 @@ kaniko:
   tags:
     - arm32v7
   script:
+    - mkdir -p /kaniko/.docker/
     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json 
     - export HAVERSION=`wget -q -O - https://api.github.com/repos/home-assistant/home-assistant/releases/latest | grep '"name"'|sed -e 's/"//g' -e 's/ //g' -e 's/://g' -e 's/,//g' -e 's/name//g'`
     - sed -e "s/_HAVERSION_/${HAVERSION}/g" $CI_PROJECT_DIR/homeassistant/Dockerfile |tee $CI_PROJECT_DIR/homeassistant/Dockerfile-local
